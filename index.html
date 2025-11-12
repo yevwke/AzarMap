@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang=ru>
+<head>
+<meta charset=utf-8>
+<title>Равнина Нганна-Иад</title>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/ol@latest/ol.css>
+<link rel=stylesheet href=style.css>
+<link rel=icon type=image/png href=favicon.png>
+<link rel=apple-touch-icon href=favicon.png>
+</head>
+<body>
+<div id=top-border>
+<div class=top-border-inner>
+<div class=top-left>
+<span class=top-btn id=btn-places>Места</span>
+<span class=top-btn id=btn-materials>Материалы</span>
+<span class=top-btn id=btn-community>Материалы сообщества</span>
+</div>
+<div class=top-right>
+<a href=https://boosty.to/azarrr target=_blank class=top-link>Boosty</a>
+<a href=https://t.me/azarguide target=_blank class=top-link>Telegram</a>
+<button id=close-all-btn>✕</button>
+</div>
+</div>
+</div>
+<div id=map></div>
+<div id=corner-link>
+<a href=https://t.me/yevwke target=_blank>made by yevwke</a>
+</div>
+<div id=tooltip class=tooltip></div>
+<div id=sidebar class=sidebar-popup></div>
+<div id=corner-logo>
+<a href=https://taplink.cc/azarguide target=_blank>
+<img src=logo.png alt=Логотип>
+</a>
+</div>
+<div id=menu-btn>
+<img src=iconb.png alt=Menu>
+</div>
+<div id=top-layer class=sidebar-popup></div>
+<div id=sidebar-left class=sidebar-popup>
+<div class=tabs>
+<button class="tab-btn active" data-tab=points>Места</button>
+<button class=tab-btn data-tab=catalog>Материалы</button>
+<button class=tab-btn data-tab=community>Материалы сообщества</button>
+</div>
+<div class=tab-contents>
+<div id=tab-points class="tab-content active">
+</div>
+<div id=tab-catalog class=tab-content>
+</div>
+<div id=tab-community class=tab-content>
+</div>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js defer></script>
+<script src="script.js?v=1" defer></script>
+<script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js").then((e=>{e.addEventListener("updatefound",(()=>{const r=e.installing;r.addEventListener("statechange",(()=>{"installed"===r.state&&navigator.serviceWorker.controller&&confirm("Доступна новая версия карты. Обновить страницу?")&&window.location.reload()}))}))}))</script>
+</body>
+</html>

@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/ol@latest/ol.css>
 <link rel=stylesheet href=style.css>
-<link rel=icon type=image/png href=favicon.png>
-<link rel=apple-touch-icon href=favicon.png>
+<link rel=icon type=image/png href=favicon.webp>
+<link rel=apple-touch-icon href=favicon.webp>
 </head>
 <body>
 <div id=top-border>
@@ -33,11 +33,11 @@
 <div id=sidebar class=sidebar-popup></div>
 <div id=corner-logo>
 <a href=https://taplink.cc/azarguide target=_blank>
-<img src=logo.png alt=Логотип>
+<img src=logo.webp alt=Логотип>
 </a>
 </div>
 <div id=menu-btn>
-<img src=iconb.png alt=Menu>
+<img src=iconb.webp alt=Menu>
 </div>
 <div id=top-layer class=sidebar-popup></div>
 <div id=sidebar-left class=sidebar-popup>
@@ -56,7 +56,7 @@
 </div>
 </div>
 <script src=https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js defer></script>
-<script src="script.js?v=1" defer></script>
+<script src="script.js?v=2" defer></script>
 <script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js").then((e=>{e.addEventListener("updatefound",(()=>{const r=e.installing;r.addEventListener("statechange",(()=>{"installed"===r.state&&navigator.serviceWorker.controller&&confirm("Доступна новая версия карты. Обновить страницу?")&&window.location.reload()}))}))}))</script>
 </body>
 </html>

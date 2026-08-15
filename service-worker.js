@@ -18,24 +18,37 @@ self.addEventListener('activate', e => {
   self.clients.claim(); // Немедленно берем контроль над клиентами
 });
 
-// Кэшируем только изображения и тайлы, включая yla_tiles
+// Кэшируем всё приложение (app shell): HTML, JS, CSS, шрифты, vendor, тайлы, картинки, json
+// Стратегия cache-first: кэшированные ресурсы в сеть не ходят, обновление — через bump CACHE_NAME или ?v=
 self.addEventListener('fetch', e => {
   const url = e.request.url;
+  if (url.endsWith('/service-worker.js')) return; // сам SW не кэшируем
 
-  if (url.includes('/tiles/') || url.includes('/yla_tiles/') || url.match(/\.(png|jpg|jpeg|webp|gif|svg)$/)) {
-    e.respondWith(
-      caches.match(e.request).then(resp => {
-        if (resp) return resp;
+  const sameOrigin = new URL(url).origin === self.location.origin;
+  const isCacheable = sameOrigin && (
+    url.endsWith('/') || // document (index.html)
+    url.includes('/tiles/') ||
+    url.includes('/yla_tiles/') ||
+    url.includes('/fonts/') ||
+    url.includes('/vendor/') ||
+    url.includes('/json/') ||
+    /\.(png|jpg|jpeg|webp|gif|svg|js|css|ttf|woff2?|html)$/.test(url)
+  );
 
-        return fetch(e.request).then(networkResp => {
-          if (!networkResp || !networkResp.ok) return networkResp;
+  if (!isCacheable) return;
 
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(e.request, networkResp.clone());
-            return networkResp;
-          });
+  e.respondWith(
+    caches.match(e.request).then(resp => {
+      if (resp) return resp;
+
+      return fetch(e.request).then(networkResp => {
+        if (!networkResp || !networkResp.ok) return networkResp;
+
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(e.request, networkResp.clone());
+          return networkResp;
         });
-      })
-    );
-  }
+      });
+    })
+  );
 });

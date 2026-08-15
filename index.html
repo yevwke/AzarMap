@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <title>Интерактивная карта Азара</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@latest/ol.css">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'self'; base-uri 'self'; form-action 'none'">
+<link rel="stylesheet" href="vendor/ol/ol.css">
 <link rel="stylesheet" href="style/style.css">
 <link rel="stylesheet" href="style/corner.css">
 <link rel="stylesheet" href="style/topbar.css">
@@ -40,12 +41,12 @@
 
       </div>
       <div class="top-right">
-        
-          <a href="https://boosty.to/azarrr" target="_blank" class="top-link top-link-boosty">boosty</a>
-          <a href="https://t.me/azarguide" target="_blank" class="top-link social-icon">
+       
+          <a href="https://boosty.to/azarrr" target="_blank" rel="noopener noreferrer" class="top-link top-link-boosty">boosty</a>
+          <a href="https://t.me/azarguide" target="_blank" rel="noopener noreferrer" class="top-link social-icon">
           <img src="static/telega.png" alt="Telegram" />
           </a>
-          <a href="https://vk.com/azarguide" target="_blank" class="top-link social-icon">
+          <a href="https://vk.com/azarguide" target="_blank" rel="noopener noreferrer" class="top-link social-icon">
           <img src="static/vk.png" alt="VK" />
           </a>
         <button id="close-all-btn">✕</button>
@@ -62,12 +63,12 @@
       <button id="export-pdf-download">Скачать</button>
     </div>
   </div>
-  <a href="https://yevwke.github.io/" target="_blank">made by yevwke</a>
+  <a href="https://yevwke.github.io" target="_blank" rel="noopener noreferrer">made by yevwke</a>
 </div>
 <div id="tooltip" class="tooltip"></div>
 <div id="sidebar" class="sidebar-popup"></div>
 <div id="corner-logo">
-  <a href="https://taplink.cc/azarguide" target="_blank">
+  <a href="https://taplink.cc/azarguide" target="_blank" rel="noopener noreferrer">
     <img src="icon/logo.webp" alt="Логотип">
   </a>
 </div>
@@ -120,59 +121,44 @@
   </div>
 </div>
 
-<!-- OpenLayers скрипт -->
-<script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+<!-- OpenLayers скрипт (локальный vendor) -->
+<script src="vendor/ol/ol.js"></script>
 
 <!-- Локации -->
-<script src="locations.js?v=11.7"></script>
-<script src="locations_yla.js?v=11.7"></script>
+<script src="locations.js?v=12.01"></script>
+<script src="locations_yla.js?v=12.01"></script>
 
 <!-- режим  ГМа-->
-<script src="gm-toggle.js?v=11.7"></script>
+<script src="gm-toggle.js?v=12.01"></script>
 
 <!-- Слои карты -->
-<script src="map_layers/script_ravnina.js?v=11.7"></script>
-<script src="map_layers/script_yla.js?v=11.7"></script>
+<script src="map_layers/script_ravnina.js?v=12.01"></script>
+<script src="map_layers/script_yla.js?v=12.01"></script>
 
 <!-- Модули интерфейса -->
-<script src="Interface/catalog.js?v=11.7"></script>
-<script src="Interface/ui-handlers.js?v=11.7"></script>
-<script src="Interface/generation-table.js?v=11.7"></script>
-<script src="Interface/tab-renderer.js?v=11.7"></script>
-<script src="Interface/tabs/stranstvie.js?v=11.7"></script>
-<script src="Interface/tabs/dungeons.js?v=11.7"></script>
-<script src="Interface/gm-panel-config-ravnina.js?v=11.7"></script>
-<script src="Interface/gm-panel-config-yla.js?v=11.7"></script>
-<script src="Interface/gm-panel.js?v=11.7"></script>
-<script src="Interface/history-nav.js?v=11.7"></script>
+<script src="Interface/catalog.js?v=12.01"></script>
+<script src="Interface/ui-handlers.js?v=12.01"></script>
+<script src="Interface/generation-table.js?v=12.01"></script>
+<script src="Interface/tab-renderer.js?v=12.01"></script>
+<script src="Interface/tabs/stranstvie.js?v=12.01"></script>
+<script src="Interface/tabs/dungeons.js?v=12.01"></script>
+<script src="Interface/gm-panel-config-ravnina.js?v=12.01"></script>
+<script src="Interface/gm-panel-config-yla.js?v=12.01"></script>
+<script src="Interface/gm-panel.js?v=12.01"></script>
+<script src="Interface/history-nav.js?v=12.01"></script>
 
 <!-- Основной скрипт -->
-<script src="script.js?v=11.7"></script>
+<script src="script.js?v=12.01"></script>
 
 <!-- Переключатель слоёв (после script.js — нужны map, overlayTooltip, fillLeftSidebarTabs) -->
-<script src="layer-toggle.js?v=11.7"></script>
+<script src="layer-toggle.js?v=12.01"></script>
 
 <!-- Экспорт карты в PDF -->
-<script src="https://cdn.jsdelivr.net/npm/jspdf@2/dist/jspdf.umd.min.js"></script>
+<script src="vendor/jspdf/jspdf.umd.min.js"></script>
 <script src="export-pdf.js?v=2"></script>
 
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').then(reg => {
-    reg.addEventListener('updatefound', () => {
-      const newWorker = reg.installing;
-      newWorker.addEventListener('statechange', () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-          // Новый SW готов, уведомляем пользователя
-          if (confirm('Доступна новая версия карты. Обновить страницу?')) {
-            window.location.reload();
-          }
-        }
-      });
-    });
-  });
-}
-</script>
+<!-- Регистрация service worker -->
+<script src="sw-register.js"></script>
 
 
 

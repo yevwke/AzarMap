@@ -1,0 +1,1 @@
+"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js").then(e=>{e.addEventListener("updatefound",()=>{const r=e.installing;r.addEventListener("statechange",()=>{"installed"===r.state&&navigator.serviceWorker.controller&&confirm("Доступна новая версия карты. Обновить страницу?")&&window.location.reload()})})});
